@@ -17,7 +17,7 @@ def install_ssh_components(distro, version, container)
     run_local_command("nerdctl exec #{container} dnf clean all")
     run_local_command("nerdctl exec #{container} dnf install -y sudo openssh-server openssh-clients")
     run_local_command("nerdctl exec #{container} ssh-keygen -A")
-  when %r{centos}, %r{^el-}, %r{eos}, %r{oracle}, %r{ol}, %r{redhat}, %r{scientific}, %r{amzn}, %r{rocky}, %r{almalinux}
+  when %r{centos}, %r{^el-}, %r{eos}, %r{oracle}, %r{ol}, %r{redhat}, %r{scientific}, %r{amzn}, %r{rocky}, %r{almalinux}, %r{rhel}
     if version == '6'
       # sometimes the redhat 6 variant containers like to eat their rpmdb, leading to
       # issues with "rpmdb: unable to join the environment" errors
