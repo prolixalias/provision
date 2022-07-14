@@ -184,7 +184,7 @@ def provision(image, inventory_location, vars)
     node['vars'] = var_hash
     nerdctl_run_opts = var_hash['nerdctl_run_opts'].flatten.join(' ') unless var_hash['nerdctl_run_opts'].nil?
   end
-  creation_command = "nerdctl run -dt --privileged #{deb_family_systemd_volume} --tmpfs /tmp:exec -p #{front_facing_port}:22 --name #{full_container_name} "
+  creation_command = "nerdctl run -d --privileged #{deb_family_systemd_volume} --tmpfs /tmp:exec -p #{front_facing_port}:22 --name #{full_container_name} "
   creation_command += "#{nerdctl_run_opts} " unless nerdctl_run_opts.nil?
   creation_command += image
   run_local_command(creation_command).strip
